@@ -1,7 +1,7 @@
 package io.github.agimaulana.monity.dao
 
 import androidx.room.*
-import io.github.agimaulana.monity.extensions.Calendars
+import io.github.agimaulana.monity.LocaleUtils
 import io.github.agimaulana.monity.model.DailyRation
 
 @Dao
@@ -23,5 +23,5 @@ interface DailyRationDao {
 
     @Transaction
     suspend fun softDelete(dailyRation: DailyRation) =
-        update(dailyRation.copy(deletedAt = Calendars.localCalendar().time))
+        update(dailyRation.copy(deletedAt = LocaleUtils.localCalendar().time))
 }

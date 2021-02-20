@@ -10,4 +10,5 @@
     <color name="grey6">#F2F2F2</color>
     <color name="primaryVariant">#292929</color>
     <color name="primary">@color/grey6</color>
+    <color name="TextViewPrimary">#CC000000</color>
 </resources>

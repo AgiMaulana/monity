@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import io.github.agimaulana.monity.converter.TimestampConverter
-import io.github.agimaulana.monity.extensions.Calendars
+import io.github.agimaulana.monity.LocaleUtils
 import java.util.*
 
 @Entity
@@ -16,5 +16,5 @@ data class DailyRation(
     val createdAt: Date,
     val deletedAt: Date?
 ) {
-    constructor(amount: Long): this(0, amount, Calendars.localCalendar().time, null)
+    constructor(amount: Long): this(0, amount, LocaleUtils.localCalendar().time, null)
 }
