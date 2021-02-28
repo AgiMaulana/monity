@@ -15,9 +15,10 @@ data class DailyRation(
     val id: Long,
     val amount: Long,
     val createdAt: Date,
+    val updatedAt: Date?,
     val deletedAt: Date?
 ) {
-    constructor(amount: Long): this(0, amount, LocaleUtils.localCalendar().time, null)
+    constructor(amount: Long): this(0, amount, LocaleUtils.localCalendar().time, null, null)
 
     @Ignore
     private val numberFormat = LocaleUtils.numberFormat()

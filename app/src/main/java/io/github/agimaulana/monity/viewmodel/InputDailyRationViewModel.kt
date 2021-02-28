@@ -1,16 +1,15 @@
 package io.github.agimaulana.monity.viewmodel
 
-import android.util.Log
 import androidx.annotation.VisibleForTesting
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.agimaulana.monity.LocaleUtils
 import io.github.agimaulana.monity.model.DailyRation
 import io.github.agimaulana.monity.repository.DailyRationRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.single
-import kotlinx.coroutines.launch
 import java.text.ParseException
 import javax.inject.Inject
 
@@ -45,6 +44,8 @@ class InputDailyRationViewModel @Inject constructor(
     }
 
     fun save() {
-        throw RuntimeException("InputDailyRationViewModel#save() not implemented")
+        viewModelScope.launchIO {
+            dailyRationRepository.update(userInputAmount)
+        }
     }
 }

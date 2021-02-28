@@ -1,5 +1,6 @@
 package io.github.agimaulana.monity.repository
 
+import io.github.agimaulana.monity.LocaleUtils
 import io.github.agimaulana.monity.dao.DailyRationDao
 import io.github.agimaulana.monity.model.DailyRation
 import kotlinx.coroutines.flow.Flow
@@ -11,9 +12,9 @@ class DailyRationRepository(private val dailyRationDao: DailyRationDao) {
 
     suspend fun update(amount: Long) {
         get().firstOrNull()
-                ?.let { it.copy(amount = amount) }
-                ?.let { dailyRationDao.update(it) }
-                ?: DailyRation(amount).let { dailyRationDao.store(it) }
+            ?.copy(amount = amount, updatedAt = LocaleUtils.localCalendar().time)
+            ?.let { dailyRationDao.update(it) }
+            ?: DailyRation(amount).let { dailyRationDao.store(it) }
     }
 
 }
