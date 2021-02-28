@@ -15,5 +15,7 @@ object LocaleUtils {
 
     fun dateFormat(format: String) = SimpleDateFormat(format, locale)
 
-    fun numberFormat() = NumberFormat.getCurrencyInstance(locale)
+    fun numberFormat() = NumberFormat.getCurrencyInstance(locale).apply {
+        maximumFractionDigits = 0
+    }
 }

@@ -24,7 +24,7 @@ class DailyRationViewModel @Inject constructor(
             .asLiveData(Dispatchers.IO)
     }
     val dailyRationAmount: LiveData<String> get() = _dailyRationAmount
-            .map { formatCurrency(it?.amount ?: 0) }
+            .map { it?.amountAsCurrency ?: DailyRation(0).amountAsCurrency }
 
     @VisibleForTesting
     fun formatCurrentDate(date: Date = LocaleUtils.localCalendar().time): String =
@@ -35,7 +35,4 @@ class DailyRationViewModel @Inject constructor(
             _date.postValue(formatCurrentDate())
         }
     }
-
-    @VisibleForTesting
-    fun formatCurrency(amount: Long): String = LocaleUtils.numberFormat().format(amount)
 }

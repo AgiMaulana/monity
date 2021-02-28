@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,31 +12,35 @@
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily Ration"
+            android:text="@string/input_daily_ration_title"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="how much money can be used in one day"
+            android:text="@string/input_daily_ration_activity_body"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
+            app:hintEnabled="false"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Rp100.000"
-                android:textSize="24sp"/>
+                android:hint="@string/input_daily_ration_hint"
+                android:textSize="24sp"
+                android:inputType="number"
+                android:id="@+id/dailyRationAmountEditText"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:layout_gravity="end"/>
+            android:text="@string/input_daily_ration_save_button"
+            android:layout_gravity="end"
+            android:id="@+id/saveDailyRationAmountButton"/>
     </LinearLayout>
 </FrameLayout>

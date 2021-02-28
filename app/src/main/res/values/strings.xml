@@ -2,4 +2,9 @@
     <string name="app_name">Monity</string>
     <string name="daily_ration_daily_limit">Daily limit</string>
     <string name="daily_ration_add_expense">Add Expense</string>
+    <string name="input_daily_ration_activity_title">Daily Ration</string>
+    <string name="input_daily_ration_title">Daily Ration</string>
+    <string name="input_daily_ration_activity_body">how much money can be used in one day</string>
+    <string name="input_daily_ration_save_button">Save</string>
+    <string name="input_daily_ration_hint">Rp100.000</string>
 </resources>

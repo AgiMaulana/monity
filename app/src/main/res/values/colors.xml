@@ -11,4 +11,5 @@
     <color name="primaryVariant">#292929</color>
     <color name="primary">@color/grey6</color>
     <color name="TextViewPrimary">#CC000000</color>
+    <color name="divider">#0F212121</color>
 </resources>

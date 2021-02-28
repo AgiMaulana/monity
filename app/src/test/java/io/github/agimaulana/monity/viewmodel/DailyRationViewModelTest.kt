@@ -1,5 +1,6 @@
 package io.github.agimaulana.monity.viewmodel
 
+import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -12,7 +13,7 @@ class DailyRationViewModelTest: ViewModelTest() {
 
     @Before
     override fun setup() {
-        viewModel = DailyRationViewModel()
+        viewModel = DailyRationViewModel(mockk())
     }
 
     @Test
@@ -24,12 +25,5 @@ class DailyRationViewModelTest: ViewModelTest() {
 
         val expected = "Senin, 1 Februari 2021"
         assertEquals(expected, formatted)
-    }
-
-    @Test
-    fun test_formatCurrency() {
-        val formatted = viewModel.formatCurrency(100_000_000)
-
-        assertEquals("100.000", formatted)
     }
 }

@@ -9,13 +9,15 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="Monday, 1 Jan 2021"/>
+        tools:text="Monday, 1 Jan 2021"
+        android:id="@+id/currentDateTextView"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="RP 100.000"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:id="@+id/dailyRationAmountTextView"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="wrap_content"
@@ -27,6 +29,7 @@
         android:layout_height="wrap_content"
         android:text="@string/daily_ration_add_expense"
         android:layout_gravity="end"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:id="@+id/addDailyExpenseButton"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
