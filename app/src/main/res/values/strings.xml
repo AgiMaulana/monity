@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Monity</string>
-    <string name="daily_ration_amount">Rp %s</string>
     <string name="daily_ration_daily_limit">Daily limit</string>
     <string name="daily_ration_add_expense">Add Expense</string>
 </resources>

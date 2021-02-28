@@ -3,17 +3,18 @@ package io.github.agimaulana.monity.dao
 import androidx.room.*
 import io.github.agimaulana.monity.LocaleUtils
 import io.github.agimaulana.monity.model.DailyRation
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DailyRationDao {
     @Query("SELECT * FROM DailyRation ORDER BY id DESC")
-    suspend fun getAll(): List<DailyRation>
+    fun getAll(): Flow<List<DailyRation>>
 
     @Query("SELECT * FROM DailyRation WHERE deletedAt IS NOT NULL ORDER BY id DESC")
-    suspend fun getDeleted(): List<DailyRation>
+    fun getDeleted(): Flow<List<DailyRation>>
 
     @Query("SELECT * FROM DailyRation WHERE deletedAt IS NULL LIMIT 1")
-    suspend fun get(): DailyRation?
+    fun get(): Flow<DailyRation?>
 
     @Insert
     suspend fun store(dailyRation: DailyRation)

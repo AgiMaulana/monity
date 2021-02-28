@@ -25,4 +25,11 @@ class DailyRationViewModelTest: ViewModelTest() {
         val expected = "Senin, 1 Februari 2021"
         assertEquals(expected, formatted)
     }
+
+    @Test
+    fun test_formatCurrency() {
+        val formatted = viewModel.formatCurrency(100_000_000)
+
+        assertEquals("100.000", formatted)
+    }
 }

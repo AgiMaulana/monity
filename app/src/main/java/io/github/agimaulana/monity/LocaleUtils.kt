@@ -1,5 +1,6 @@
 package io.github.agimaulana.monity
 
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,4 +14,6 @@ object LocaleUtils {
     ): Calendar = Calendar.getInstance(timeZone, locale)
 
     fun dateFormat(format: String) = SimpleDateFormat(format, locale)
+
+    fun numberFormat() = NumberFormat.getCurrencyInstance(locale)
 }
