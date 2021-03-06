@@ -14,6 +14,9 @@ class DailyRationFragment: BaseFragment() {
         DailyRationFragmentBinding.inflate(layoutInflater)
     }
     override val viewModel: DailyRationViewModel by viewModels()
+    private val addDailyExpenseDialog: AddDailyExpenseDialog by lazy {
+        AddDailyExpenseDialog()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,7 +25,7 @@ class DailyRationFragment: BaseFragment() {
                 viewBinding.dailyRationAmountTextView::setText)
 
         viewBinding.addDailyExpenseButton.setOnClickListener {
-            startActivity(Intent(context, InputDailyRationActivity::class.java))
+            addDailyExpenseDialog.show(childFragmentManager, "addDailyExpense")
         }
     }
 

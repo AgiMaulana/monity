@@ -11,6 +11,7 @@
     <color name="primaryVariant">#292929</color>
     <color name="primary">@color/grey6</color>
     <color name="TextViewPrimary">#CC000000</color>
+    <color name="TextViewPrimaryInverse">#D9FFFFFF</color>
     <color name="divider">#33212121</color>
     <color name="total_expenses">#DE9A0007</color>
 </resources>

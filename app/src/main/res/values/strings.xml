@@ -10,4 +10,13 @@
     <string name="input_daily_ration_saved_message">Daily ration amount saved</string>
     <string name="total_expenses">Total expenses</string>
     <string name="total_remaining">Remaining</string>
+    <string name="main_daily_ration">Daily Ration</string>
+    <string name="daily_expense_add_close_dialog">Close</string>
+    <string name="add_daily_expense_time_hint">Time</string>
+    <string name="add_daily_expense_activity_name">Activity</string>
+    <string name="add_daily_expense_time_helper">The time of the activity</string>
+    <string name="add_daily_expense_activity_helper">The activity name, breakfast, coffee, etc</string>
+    <string name="add_daily_expense_submit_button">Add</string>
+    <string name="add_daily_expense_amount">Amount</string>
+    <string name="add_daily_expense_amount_helper">The amount of price expended</string>
 </resources>
