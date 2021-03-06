@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import dagger.hilt.android.AndroidEntryPoint
 import io.github.agimaulana.monity.R
 import io.github.agimaulana.monity.databinding.DailyExpenseAddDialogBinding
@@ -36,6 +38,9 @@ class AddDailyExpenseDialog: BottomSheetDialogFragment() {
                 viewModel.amount = text?.toString() ?: ""
             }
         }
+        viewBinding.addDailyExpenseTimeEditText.setOnClickListener {
+            showTimePicker()
+        }
 
         viewModel.dailyExpense.observe(viewLifecycleOwner) {
             viewBinding.addDailyExpenseTimeEditText.setText(it.time)
@@ -58,5 +63,20 @@ class AddDailyExpenseDialog: BottomSheetDialogFragment() {
         } else {
             false
         }
+    }
+
+    private fun showTimePicker() {
+        MaterialTimePicker.Builder()
+                .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
+                .setTimeFormat(TimeFormat.CLOCK_24H)
+                .setHour(viewModel.time.first)
+                .setMinute(viewModel.time.second)
+                .build()
+                .apply {
+                    addOnPositiveButtonClickListener {
+                        viewModel.setTime(hour, minute)
+                    }
+                }
+                .show(childFragmentManager, "timePicker")
     }
 }
