@@ -5,7 +5,6 @@ import androidx.test.core.app.ApplicationProvider
 import io.github.agimaulana.monity.data.AppDatabase
 import io.github.agimaulana.monity.model.DailyRation
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.single
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
@@ -37,7 +36,7 @@ class DailyRationDaoTest {
     fun test_store_get_getAll() {
         val dailyRation = DailyRation(100_000)
         val added = runBlocking {
-            dailyRationDao.store(dailyRation)
+            dailyRationDao.insert(dailyRation)
             dailyRationDao.get()
                     .first()
         }
@@ -49,31 +48,31 @@ class DailyRationDaoTest {
 
         assertEquals(1, getAll.size)
         assertEquals(dailyRation.amount, getAll.first().amount)
-        assertEquals(dailyRation.amount, added?.amount)
+        assertEquals(dailyRation.amount, added.amount)
     }
 
     @Test
     fun test_softDelete_getDeleted() {
         val dailyRation1 = runBlocking {
-            dailyRationDao.store(DailyRation(100_000))
+            dailyRationDao.insert(DailyRation(100_000))
             dailyRationDao.get().first()
         }
 
         val dailyRation2 = runBlocking {
-            dailyRation1?.let { dailyRationDao.softDelete(it) }
-            dailyRationDao.store(DailyRation(50_000))
+            dailyRation1.let { dailyRationDao.softDelete(it) }
+            dailyRationDao.insert(DailyRation(50_000))
             dailyRationDao.get().first()
         }
 
         val dailyRation3 = runBlocking {
-            dailyRation2?.let { dailyRationDao.softDelete(it) }
-            dailyRationDao.store(DailyRation(10_000))
+            dailyRation2.let { dailyRationDao.softDelete(it) }
+            dailyRationDao.insert(DailyRation(10_000))
             dailyRationDao.get().first()
         }
 
         val deleted = runBlocking { dailyRationDao.getDeleted().first() }
-        assertTrue(deleted.any { dailyRation1?.id == it.id })
-        assertTrue(deleted.any { dailyRation2?.id == it.id })
-        assertFalse(deleted.any { dailyRation3?.id == it.id })
+        assertTrue(deleted.any { dailyRation1.id == it.id })
+        assertTrue(deleted.any { dailyRation2.id == it.id })
+        assertFalse(deleted.any { dailyRation3.id == it.id })
     }
 }

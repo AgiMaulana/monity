@@ -8,4 +8,6 @@
     <string name="input_daily_ration_save_button">Save</string>
     <string name="input_daily_ration_hint">Rp100.000</string>
     <string name="input_daily_ration_saved_message">Daily ration amount saved</string>
+    <string name="total_expenses">Total expenses</string>
+    <string name="total_remaining">Remaining</string>
 </resources>

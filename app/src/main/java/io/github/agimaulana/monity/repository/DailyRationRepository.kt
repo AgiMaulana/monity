@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.firstOrNull
 
 class DailyRationRepository(private val dailyRationDao: DailyRationDao) {
 
-    fun get(): Flow<DailyRation?> = dailyRationDao.get()
+    fun get(): Flow<DailyRation> = dailyRationDao.get()
 
     suspend fun update(amount: Long) {
         get().firstOrNull()
             ?.copy(amount = amount, updatedAt = LocaleUtils.localCalendar().time)
             ?.let { dailyRationDao.update(it) }
-            ?: DailyRation(amount).let { dailyRationDao.store(it) }
+            ?: DailyRation(amount).let { dailyRationDao.insert(it) }
     }
 
 }

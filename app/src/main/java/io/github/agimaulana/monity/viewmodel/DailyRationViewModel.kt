@@ -15,7 +15,7 @@ import javax.inject.Inject
 class DailyRationViewModel @Inject constructor(
     private val dailyRationRepository: DailyRationRepository
 ): BaseViewModel() {
-    private val dateFormat = LocaleUtils.dateFormat("EEEE, d MMMM yyyy")
+    private val dateFormat = LocaleUtils.createDateFormat("EEEE, d MMMM yyyy")
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> get() = _date
 

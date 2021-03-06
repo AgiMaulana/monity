@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import io.github.agimaulana.monity.dao.DailyExpenseDao
 import io.github.agimaulana.monity.dao.DailyRationDao
+import io.github.agimaulana.monity.repository.DailyExpenseRepository
 import io.github.agimaulana.monity.repository.DailyRationRepository
 
 @Module
@@ -14,6 +16,11 @@ class RepositoryModule {
     @Provides
     fun provideDailyRationRepository(dailyRationDao: DailyRationDao): DailyRationRepository {
         return DailyRationRepository(dailyRationDao)
+    }
+
+    @Provides
+    fun provideDailyExpenseRepository(dailyExpenseDao: DailyExpenseDao): DailyExpenseRepository {
+        return DailyExpenseRepository(dailyExpenseDao)
     }
 
 }

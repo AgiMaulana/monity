@@ -13,7 +13,7 @@ object LocaleUtils {
         locale: Locale = this.locale
     ): Calendar = Calendar.getInstance(timeZone, locale)
 
-    fun dateFormat(format: String) = SimpleDateFormat(format, locale)
+    fun createDateFormat(format: String) = SimpleDateFormat(format, locale)
 
     fun numberFormat() = NumberFormat.getCurrencyInstance(locale).apply {
         maximumFractionDigits = 0

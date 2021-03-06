@@ -14,10 +14,10 @@ interface DailyRationDao {
     fun getDeleted(): Flow<List<DailyRation>>
 
     @Query("SELECT * FROM DailyRation WHERE deletedAt IS NULL LIMIT 1")
-    fun get(): Flow<DailyRation?>
+    fun get(): Flow<DailyRation>
 
     @Insert
-    suspend fun store(dailyRation: DailyRation)
+    suspend fun insert(dailyRation: DailyRation)
 
     @Update
     suspend fun update(dailyRation: DailyRation)
