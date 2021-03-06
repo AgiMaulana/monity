@@ -71,6 +71,8 @@
             android:text="@string/add_daily_expense_submit_button"
             android:textColor="@color/TextViewPrimary"
             android:layout_marginTop="24dp"
-            android:layout_gravity="end"/>
+            android:layout_gravity="end"
+            android:enabled="false"
+            android:id="@+id/addDailyExpenseButton"/>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doAfterTextChanged
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -28,31 +29,46 @@ class AddDailyExpenseDialog: BottomSheetDialogFragment() {
         _viewBinding = it
     }.root
 
-    private var amountSetByViewModel = false
+    private var setByViewModel = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.toolbar.setOnMenuItemClickListener(this::onMenuItemClicked)
-        viewBinding.addDailyExpenseAmountEditText.doOnTextChanged { text, _, _, _ ->
-            if (!amountSetByViewModel) {
-                viewModel.amount = text?.toString() ?: ""
-            }
-        }
         viewBinding.addDailyExpenseTimeEditText.setOnClickListener {
             showTimePicker()
         }
+        viewBinding.addDailyExpenseActivityNameEditText.doAfterTextChanged {
+            if (!setByViewModel) {
+                viewModel.activityName = it?.toString() ?: ""
+            }
+            invalidateAddButton()
+        }
+        viewBinding.addDailyExpenseAmountEditText.doOnTextChanged { text, _, _, _ ->
+            if (!setByViewModel) {
+                viewModel.amount = text?.toString() ?: ""
+            }
+            invalidateAddButton()
+        }
+        viewBinding.addDailyExpenseButton.setOnClickListener {
+            save()
+        }
 
         viewModel.dailyExpense.observe(viewLifecycleOwner) {
+            setByViewModel = true
             viewBinding.addDailyExpenseTimeEditText.setText(it.time)
-            viewBinding.addDailyExpenseActivityNameEditText.setText(it.activityName)
-            amountSetByViewModel = true
+            viewBinding.addDailyExpenseActivityNameEditText.run {
+                setText(it.activityName)
+                if (hasFocus()) {
+                    setSelection(length())
+                }
+            }
             viewBinding.addDailyExpenseAmountEditText.run {
                 setText(it.amountAsCurrency)
                 if (hasFocus()) {
                     setSelection(length())
                 }
             }
-            amountSetByViewModel = false
+            setByViewModel = false
         }
     }
 
@@ -78,5 +94,18 @@ class AddDailyExpenseDialog: BottomSheetDialogFragment() {
                     }
                 }
                 .show(childFragmentManager, "timePicker")
+    }
+
+    private fun invalidateAddButton() {
+        viewBinding.addDailyExpenseButton.isEnabled =
+                viewModel.activityName.isNotBlank() && viewModel.userInputAmount > 0
+    }
+
+    private fun save() {
+        viewModel.save().observe(viewLifecycleOwner) { isSaved ->
+            if (isSaved) {
+                dismiss()
+            }
+        }
     }
 }
