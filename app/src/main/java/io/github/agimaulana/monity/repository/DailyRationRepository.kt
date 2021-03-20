@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.firstOrNull
 
 class DailyRationRepository(private val dailyRationDao: DailyRationDao) {
 
-    fun get(): Flow<DailyRation> = dailyRationDao.get()
+    fun get(): Flow<DailyRation?> = dailyRationDao.get()
 
     suspend fun update(amount: Long) {
         get().firstOrNull()

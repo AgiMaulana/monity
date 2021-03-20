@@ -1,5 +1,6 @@
 package io.github.agimaulana.monity.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.github.agimaulana.monity.LocaleUtils
@@ -32,6 +33,7 @@ class DailyExpenseViewModel @Inject constructor(
         mediatorLiveData.addSource(
                 dailyExpenses
                         .map {
+                            Log.d("DailyExpense", "1. Model: $it")
                             it.sumBy { expense -> expense.amount.toInt() }
                         }
         ) {
@@ -43,7 +45,11 @@ class DailyExpenseViewModel @Inject constructor(
                 dailyRationRepository.get()
                         .asLiveData(Dispatchers.IO)
                         .map {
-                            it.amount - (mediatorLiveData.value?.totalExpenses ?: 0)
+                            Log.d("DailyExpense", "2. Model: $it")
+//                            it.amount - (mediatorLiveData.value?.totalExpenses ?: 0)
+                            it?.amount ?: 0
+                        }.map {
+                            it - (mediatorLiveData.value?.totalExpenses ?: 0)
                         }
         ) {
             val total = mediatorLiveData.value?.copy(totalRemaining = it.toLong())
