@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/add_daily_expense_activity_name"
                 android:maxLines="1"
+                android:lines="1"
                 android:id="@+id/addDailyExpenseActivityNameEditText"/>
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -20,6 +20,11 @@ class DailyExpenseViewModel @Inject constructor(
         private val dailyRationRepository: DailyRationRepository,
         private val dailyExpenseRepository: DailyExpenseRepository
 ): BaseViewModel() {
+    val dailyExpenses: LiveData<List<DailyExpense>> by lazy {
+        dailyExpenseRepository.getAll()
+                .asLiveData(Dispatchers.IO)
+    }
+
     val totalRemaining: LiveData<TotalDailyExpense> by lazy {
         collectTotalDailyExpense().asLiveData(Dispatchers.IO)
     }

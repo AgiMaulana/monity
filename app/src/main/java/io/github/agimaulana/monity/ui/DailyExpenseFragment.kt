@@ -27,13 +27,15 @@ class DailyExpenseFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         viewBinding.dailyExpensesRecyclerView.run {
             layoutManager = LinearLayoutManager(requireContext())
             addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
             adapter = dailyExpenseRecyclerAdapter
         }
 
+        viewModel.dailyExpenses.observe(viewLifecycleOwner) {
+            dailyExpenseRecyclerAdapter.set(it)
+        }
         viewModel.totalRemaining.observe(viewLifecycleOwner) {
             viewBinding.totalExpensesBodyTextView.text = it.totalExpensesAsCurrency
             viewBinding.totalRemainingBodyTextView.text = it.totalRemainingAsCurrency

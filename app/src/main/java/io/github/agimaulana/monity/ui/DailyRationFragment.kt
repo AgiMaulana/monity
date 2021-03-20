@@ -1,6 +1,5 @@
 package io.github.agimaulana.monity.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -14,9 +13,6 @@ class DailyRationFragment: BaseFragment() {
         DailyRationFragmentBinding.inflate(layoutInflater)
     }
     override val viewModel: DailyRationViewModel by viewModels()
-    private val addDailyExpenseDialog: AddDailyExpenseDialog by lazy {
-        AddDailyExpenseDialog()
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,7 +21,7 @@ class DailyRationFragment: BaseFragment() {
                 viewBinding.dailyRationAmountTextView::setText)
 
         viewBinding.addDailyExpenseButton.setOnClickListener {
-            addDailyExpenseDialog.show(childFragmentManager, "addDailyExpense")
+            AddDailyExpenseDialog().show(childFragmentManager, "addDailyExpense")
         }
     }
 

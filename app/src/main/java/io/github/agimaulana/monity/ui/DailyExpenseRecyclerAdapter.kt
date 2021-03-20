@@ -1,5 +1,6 @@
 package io.github.agimaulana.monity.ui
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,7 @@ class DailyExpenseRecyclerAdapter: RecyclerView.Adapter<DailyExpenseRecyclerAdap
         fun bind(expense: DailyExpense) {
             with(viewBinding) {
                 with(expense) {
-                    expenseAmountTextView.text = time
+                    expenseActivityTimeTextView.text = time
                     expenseActivityNameTextView.text = activityName
                     expenseAmountTextView.text = amountAsCurrency
                 }
@@ -43,7 +44,7 @@ class DailyExpenseRecyclerAdapter: RecyclerView.Adapter<DailyExpenseRecyclerAdap
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DailyExpenseViewHolder {
         return LayoutInflater.from(parent.context)
-                .let(ExpsenseItemBinding::inflate)
+                .let { ExpsenseItemBinding.inflate(it, parent, false) }
                 .let(::DailyExpenseViewHolder)
     }
 
